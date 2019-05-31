@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/sample.css">
+    <title>じゃんけん</title>
+</head>
+
+<body>
+    <header>
+        <h1>じゃんけんゲーム</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li id="gu_btn">グー
+                <img src="image/gu1.png" class="my" alt="">
+            </li>
+            <li id="cho_btn" class="choki_btn">チョキ
+                <img src="image/choki1.png" class="my" alt="">
+            </li>
+            <li id="par_btn">パー
+                <img src="image/par1.png" class="my" alt="">
+            </li>
+        </ul>
+
+        <div class="janken">
+            <div class="res">結果は... <span id="judgment"></span></div>
+            <div id="com_hand">ロボットの出した手は？</div>
+            <div id="vs">勝った回数：</div>
+            <div id="dora" class="dorachan"></div>
+        </div>
+
+
+        <button onclick="location.href='./top.html'" class="topIcon">Top</button>
+
+
+    </main>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //ここに処理を追加
+
+            const result = ['グー', 'グー', 'チョキ', 'パー'];
+
+            let win = 0;
+
+            $('#gu_btn').on('click', function () {
+                let rand = Math.floor(Math.random() * 4);
+                $('#com_hand').html('ロボットの手：' + result[rand]);
+                $('#vs').html('勝った回数:' + win);
+                if (rand <= 1) {
+                    $('#judgment').text('あいこ').css('color', 'gray').css('font-size', '50px');
+                    $('#dora').html('<img class="guuu" src="image/gu.png">');
+                } else if (rand == 2) {
+                    $('#judgment').text('勝ち').css('color', 'red').css('font-size', '50px');
+                    $('#dora').html('<img src="image/choki.jpg">');
+                    win++;
+                } else {
+                    $('#judgment').text('負け').css('color', 'blue').css('font-size', '50px');
+                    $('#dora').html('<img src="image/par.jpg">');
+                }
+            });
+
+            $('#cho_btn').on('click', function () {
+                let rand = Math.floor(Math.random() * 4);
+                $('#com_hand').text('ロボットの手：' + result[rand]);
+                $('#vs').html('勝った回数:' + win);
+                if (rand <= 1) {
+                    $('#judgment').text('負け').css('color', 'blue').css('font-size', '50px');
+                    $('#dora').html('<img class="guuu" src="image/gu.png">');
+                } else if (rand == 2) {
+                    $('#judgment').text('あいこ').css('color', 'gray').css('font-size', '50px');
+                    $('#dora').html('<img src="image/choki.jpg">');
+                } else {
+                    $('#judgment').text('勝ち').css('color', 'red').css('font-size', '50px');
+                    $('#dora').html('<img src="image/par.jpg">');
+                    win++;
+                }
+            });
+
+            $('#par_btn').on('click', function () {
+                let rand = Math.floor(Math.random() * 4);
+                $('#com_hand').text('ロボットの手：' + result[rand]);
+                $('#vs').html('勝った回数:' + win);
+                if (rand <= 1) {
+                    $('#judgment').text('勝ち').css('color', 'red').css('font-size', '50px');
+                    $('#dora').html('<img class="guuu" src="image/gu.png">');
+                    win++;
+                } else if (rand == 2) {
+                    $('#judgment').text('負け').css('color', 'blue').css('font-size', '50px');
+                    $('#dora').html('<img src="image/choki.jpg">');
+                } else {
+                    $('#judgment').text('あいこ').css('color', 'gray').css('font-size', '50px');
+                    $('#dora').html('<img src="image/par.jpg">');
+                }
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
